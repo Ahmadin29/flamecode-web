@@ -10,7 +10,7 @@ export default function Sidebar(params) {
     }
 
     return (
-        <aside className="w-20 h-full shadow-md dark:bg-gray-800 absolute" aria-label="Sidebar">
+        <aside className="w-20 h-full shadow-md dark:bg-gray-800 fixed" aria-label="Sidebar">
             <div className="p-4 mt-8">
                 <Link href="#">
                     <div className="flex justify-center">
@@ -32,14 +32,14 @@ export default function Sidebar(params) {
                     <li>
                         <Link href="/projects">
                             <button className='flex justify-center p-4 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-blue-700' >
-                                <Folder2 variant='Bold' />
+                                <Folder2 title='Projects' variant='Bold' />
                             </button>
                         </Link>
                     </li>
                     <li>
                         <Link href="/tutorials">
                             <button className='flex justify-center p-4 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-blue-700' >
-                                <PlayCircle variant='Bold' />
+                                <PlayCircle title='Tutorials' variant='Bold' />
                             </button>
                         </Link>
                     </li>

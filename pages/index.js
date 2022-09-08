@@ -16,10 +16,10 @@ export default function Home() {
         </div>
         <div className='flex items-center flex-wrap border-b py-4 border-b-gray-800' >
           <Link href='/projects/new'>
-            <div className='p-16 px-32 flex flex-col items-center text-sm rounded-lg bg-gray-800 border border-gray-800 hover:border-gray-500 hover:bg-gray-700' >
+            <button className='p-16 px-32 flex flex-col items-center text-sm rounded-lg bg-gray-800 border border-gray-800 hover:border-gray-500 hover:bg-gray-700' >
               <AddCircle variant="Bold" className='mb-4' size={50} />
               New Project
-            </div>
+            </button>
           </Link>
         </div>
       </div>
