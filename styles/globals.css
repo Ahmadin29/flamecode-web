@@ -26,3 +26,8 @@ a {
     background: #111827;
   }
 }
+
+::selection {
+  background: white;
+  color: #111827;
+}
