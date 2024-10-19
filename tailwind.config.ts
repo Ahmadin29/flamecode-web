@@ -11,6 +11,16 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+
+        primary: "#1D4ED8",
+
+        "fill-100": '#1C1C27',
+        "fill-300": '#28293D',
+        "fill-500": '#3D3E5C',
+
+        stroke: '#51537B',
+
+        white: "#FFFFFF",
       },
     },
   },
