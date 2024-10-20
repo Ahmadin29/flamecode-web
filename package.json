@@ -9,6 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.25.7",
+    "@babel/preset-env": "^7.25.8",
+    "@babel/preset-react": "^7.25.7",
+    "@babel/preset-typescript": "^7.25.7",
+    "@babel/standalone": "^7.25.8",
     "clsx": "^2.1.1",
     "iconsax-react": "^0.0.8",
     "next": "14.2.15",
@@ -16,6 +21,7 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@types/babel__standalone": "^7.1.7",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

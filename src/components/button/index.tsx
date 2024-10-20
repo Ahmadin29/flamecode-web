@@ -4,9 +4,11 @@ interface Props {
   className?: string,
   labelClassName?: string,
   icon?: any,
+  rightIcon?: any,
   variant?: 'primary' | 'outlined' | 'ghost',
-  label: string,
+  label?: string,
   onClick?: () => void,
+  children?: any,
 }
 
 export default function Button({
@@ -16,6 +18,8 @@ export default function Button({
   label,
   onClick,
   variant = 'primary',
+  children,
+  rightIcon,
 }:Props) {
   return(
     <button className={
@@ -32,12 +36,19 @@ export default function Button({
       {
         icon && icon
       }
-      <span className={
-        clsx(
-          icon && "ml-3",
-          labelClassName
-        )
-      }>{label}</span>
+      {
+        label && <span className={
+          clsx(
+            icon && "ml-3",
+            rightIcon && "mr-3",
+            labelClassName
+          )
+        }>{label}</span>
+      }
+      {
+        rightIcon && rightIcon
+      }
+      {children}
     </button>
   )
 }
