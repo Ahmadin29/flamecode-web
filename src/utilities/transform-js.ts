@@ -17,6 +17,8 @@ export const componentExtractor = (element: any):any => {
   }, {});
 
   let textContent = '';
+  const children:any = [];
+
   element.childNodes.forEach((child:any) => {
     if (child.nodeType === Node.TEXT_NODE) {
       // Add text node content and trim whitespace
@@ -24,7 +26,18 @@ export const componentExtractor = (element: any):any => {
     }
   });
 
-  const children:any = [];
+  if (textContent.length > 0) {
+    const id = `text-${Math.random().toString(36).slice(2,9)}`;
+
+    children.push({
+      id: id,
+      tag: 'text',
+      props: {},
+      children: null,
+      text: textContent,
+    });
+  }
+
   element.childNodes.forEach((child:any) => {
     if (child.nodeType === Node.ELEMENT_NODE) {
       children.push(componentExtractor(child));
@@ -41,7 +54,6 @@ export const componentExtractor = (element: any):any => {
     id: id,
     tag: tagName,
     props: attributes,
-    text: textContent,
     children: children.length ? children : null,
   };
 }

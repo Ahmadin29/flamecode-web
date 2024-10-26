@@ -1,11 +1,11 @@
 import { ProjectContext } from "@/contexts/ProjectContext";
-import { useContext, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { isEmpty } from "lodash-es";
 import LayerSnippet from "./LayerSnippet";
 
 export default function LeftSideBarLayers() {
 
-  const {content,selectedFile} = useContext(ProjectContext);
+  const {content,selectedFile,activeLayer} = useContext(ProjectContext);
 
   const layers = useMemo(()=>{
     if (isEmpty(content)){
@@ -27,13 +27,29 @@ export default function LeftSideBarLayers() {
     })
   },[content]);
 
+  useEffect(()=>{
+    if (activeLayer) {
+      const element = document.getElementById(activeLayer);
+
+      const activeElement = document.getElementsByClassName('bg-warning');
+      if (activeElement.length > 0) {
+        for (let i = 0; i < activeElement.length; i++) {
+          activeElement[i].classList.remove('bg-warning');
+        }
+      }
+      if (element) {
+        element.classList.add('bg-warning');
+      }
+    }
+  },[activeLayer])
+
   return(
     //GRID_START
     <div className="flex-1 overflow-y-scroll border-b border-b-fill-500">
       <div className="flex font-medium sticky top-0 bg-fill-300 items-center justify-between p-2 border-b border-b-fill-500">
-        Layers
+        Layers{activeLayer}
       </div>
-      <div className="text-sm">
+      <div className="text-sm" id="layers">
         {layers}
       </div>
     </div>
