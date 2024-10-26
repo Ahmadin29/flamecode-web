@@ -1,8 +1,9 @@
-import Test from "@/components/pages/test";
+import { ProjectContext } from "@/contexts/ProjectContext";
+import { getFileContent, isEditableFile } from "@/utilities/client-file-directory";
 import { componentSerializer, transformJS } from "@/utilities/transform-js";
 import clsx from "clsx";
-import { ArrowDown, ArrowDown2, ArrowLeft, ArrowRight, ArrowRight2, DocumentCode, Folder2 } from "iconsax-react";
-import React, { useCallback, useState } from "react";
+import { ArrowDown2, ArrowRight2, DocumentCode } from "iconsax-react";
+import React, { useCallback, useContext, useState } from "react";
 
 interface Props {
   item: any;
@@ -11,14 +12,15 @@ interface Props {
 
 function File({item,depth = 0}:Props) {
   const indent = depth * 12;
+  const {setSelectedFile,setContent} = useContext(ProjectContext);
   
-  const onOpenFile = useCallback((item:any)=>{
-    if (item.name.endsWith('.tsx')) {
-      const component = transformJS(item.content);
+  const onOpenFile = useCallback(async(item:any)=>{
+    const content = await getFileContent(item);
+    setSelectedFile(item)
+    if (isEditableFile(item.name)) {
+      const component = transformJS(content);
       const serializedComponent = componentSerializer(component);
-
-      console.log(serializedComponent);
-      
+      setContent(serializedComponent)
     }
   },[]);
 

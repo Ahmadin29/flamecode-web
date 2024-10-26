@@ -19,6 +19,8 @@ const config: Config = {
         "fill-500": '#3D3E5C',
 
         stroke: '#51537B',
+        warning: '#FCD62A',
+        error: '#FF422D',
 
         white: "#FFFFFF",
       },

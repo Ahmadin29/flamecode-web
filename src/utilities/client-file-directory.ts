@@ -1,3 +1,5 @@
+import { ALLOWED_EDIT_EXTENSIONS } from "@/consts/app/allowedEditExtensions";
+
 export async function openDirectory(dirHandle:any,parent = '') {
 
   const entries = [];
@@ -13,6 +15,7 @@ export async function openDirectory(dirHandle:any,parent = '') {
         name: entry.name,
         kind: entry.kind,
         content: content,
+        fileHandle: fileHandle,
       });
     } else if (entry.kind === 'directory') {
       if (['node_modules','.git','.vscode','.next'].includes(entry.name)) {
@@ -41,4 +44,15 @@ export async function openDirectory(dirHandle:any,parent = '') {
   }
 
   return entries;
+}
+
+export function isEditableFile(fileName:string) {
+  return ALLOWED_EDIT_EXTENSIONS.some(ending => fileName.endsWith(ending));
+}
+
+export async function getFileContent(item:any) {
+  const file = await item.fileHandle.getFile();
+  const content = await file.text();
+
+  return content;
 }

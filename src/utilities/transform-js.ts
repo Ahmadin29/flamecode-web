@@ -35,7 +35,10 @@ export const componentExtractor = (element: any):any => {
     return;
   }
 
+  const id = attributes.id || `${tagName}-${Math.random().toString(36).slice(2,9)}`;
+
   return {
+    id: id,
     tag: tagName,
     props: attributes,
     text: textContent,

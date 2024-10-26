@@ -1,26 +1,30 @@
 import Button from "@/components/button";
 import { openDirectory } from "@/utilities/client-file-directory";
-import clsx from "clsx";
-import { Document, DocumentCode, Folder2, FolderAdd } from "iconsax-react";
-import { useCallback, useMemo, useState } from "react";
+import { FolderAdd } from "iconsax-react";
+import { useCallback, useContext, useMemo } from "react";
 import DirectorySnippet from "./DirectorySnippet";
+import { ProjectContext } from "@/contexts/ProjectContext";
 
 export default function LeftSideBarExplorer() {
 
-  const [directories,setDirectories] = useState<any[]>([]);
+  const {setDirectory, directory} = useContext(ProjectContext);
 
   const onOpenFolder = useCallback(async() => {
-    // @ts-ignore
-    const dirHandle = await window.showDirectoryPicker();
-    const directories = await openDirectory(dirHandle);
-    setDirectories(directories)
+    try {
+      // @ts-ignore
+      const dirHandle = await window.showDirectoryPicker();
+      const directories = await openDirectory(dirHandle);
+      setDirectory(directories)
+    } catch (error) {
+      
+    }
   },[]);
 
-  const renderDirectories = useMemo(()=>{
-    return directories.map((item:any)=>{
+  const directories = useMemo(()=>{
+    return directory.map((item:any)=>{
       return <DirectorySnippet key={item.path} item={item}/>
     })
-  },[directories])
+  },[directory])
 
   return(
     <div className="flex-1 max-w-[360px] min-h-[320px] max-h-[40%] overflow-y-scroll border-b border-b-fill-500">
@@ -37,7 +41,7 @@ export default function LeftSideBarExplorer() {
       </div>
 
       <div className="text-sm">
-        {renderDirectories}
+        {directories}
       </div>
     </div>
   )
