@@ -44,3 +44,16 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+.selected-layer {
+  outline: 2px dashed theme("colors.fill-500");
+}
+
+.active-layer {
+  outline: 2px solid theme("colors.primary");
+  position: relative;
+}
+
+.grid-cursor-pointer {
+  cursor: pointer;
+}

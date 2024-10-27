@@ -7,6 +7,8 @@ interface ProjectContextProps {
   setSelectedFile:any;
   content:any;
   setContent:any;
+  selectedLayer:any;
+  setSelectedLayer:any;
   activeLayer:any;
   setActiveLayer:any;
 }
@@ -20,6 +22,8 @@ export const ProjectContext = createContext<ProjectContextProps>({
   setContent: () => {},
   activeLayer: '',
   setActiveLayer: () => {},
+  selectedLayer: '',
+  setSelectedLayer: () => {},
 });
 
 const ProjectContextProvider = ({ children }:any) => {
@@ -27,9 +31,10 @@ const ProjectContextProvider = ({ children }:any) => {
   const [selectedFile, setSelectedFile] = useState({});
   const [content, setContent] = useState({});
   const [activeLayer, setActiveLayer] = useState('');
+  const [selectedLayer, setSelectedLayer] = useState('');
 
   return (
-    <ProjectContext.Provider value={{ directory, setDirectory, selectedFile, setSelectedFile, content, setContent, activeLayer, setActiveLayer }}>
+    <ProjectContext.Provider value={{ directory, setDirectory, selectedFile, setSelectedFile, content, setContent, activeLayer, setActiveLayer, selectedLayer, setSelectedLayer }}>
       {children}
     </ProjectContext.Provider>
   );

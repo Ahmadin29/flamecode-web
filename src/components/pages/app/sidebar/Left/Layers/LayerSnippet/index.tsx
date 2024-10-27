@@ -10,7 +10,7 @@ interface Props {
 
 export default function LayerSnippet({item,depth = 0}:Props) {
 
-  const {setActiveLayer,activeLayer} = useContext(ProjectContext);
+  const {setActiveLayer,activeLayer,selectedLayer} = useContext(ProjectContext);
   const [isOpen,setIsOpen] = useState(true);
 
   const childrens = useMemo(()=>{
@@ -36,8 +36,8 @@ export default function LayerSnippet({item,depth = 0}:Props) {
       <div className="flex items-center justify-center">
       {
         isOpen ?
-        <ArrowDown2 variant="Bold" className="w-[18px] h-[15px]"/> :
-        <ArrowRight2 variant="Bold" className="w-[18px] h-[15px]"/>
+        <ArrowDown2 variant="Bold" className="w-[18px] h-[16px]"/> :
+        <ArrowRight2 variant="Bold" className="w-[18px] h-[16px]"/>
       }
       </div>
     ) 
@@ -50,9 +50,10 @@ export default function LayerSnippet({item,depth = 0}:Props) {
       <div
         className={
           clsx(
-            "text-xs flex items-center cursor-pointer py-2 hover:bg-fill-100",
+            "text-xs flex items-center cursor-pointer py-2 hover:bg-fill-100 pl-1",
             {
               "bg-fill-500": activeLayer === item.id,
+              "bg-fill-100": selectedLayer === item.id,
             }
           )
         }
@@ -61,33 +62,11 @@ export default function LayerSnippet({item,depth = 0}:Props) {
           setIsOpen(!isOpen);
         }}
       >
-        <div className="flex flex-row">
-          <div className="flex items-center mr-2">
-            <div className={
-              clsx(
-                "w-[8px] h-[1px] rounded-full",
-                {
-                  "bg-slate-200": activeLayer === item.id,
-                  "bg-fill-500": activeLayer !== item.id,
-                }
-              )
-            }></div>
-            <div className={
-              clsx(
-                "min-w-[10px] min-h-[10px] rounded-full",
-                {
-                  "bg-slate-200": activeLayer === item.id,
-                  "bg-fill-500": activeLayer !== item.id,
-                }
-              )
-            }></div>
-          </div>
-          <span className="line-clamp-1" >
-            {item.tag}
-            <span className="text-white/40">{item.id ? `#${item.id}` : ''}</span>
-          </span>
-        </div>
         {chevron}
+        <span className="line-clamp-1 ml-[6px]" >
+          {item.tag}
+          <span className="text-white/40">{item.id ? `#${item.id}` : ''}</span>
+        </span>
       </div>
 
       {isOpen && childrens}
