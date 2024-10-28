@@ -108,7 +108,7 @@ export default function useComponentParser() {
 
   useEffect(()=>{
     if (isEmpty(content) || isEmpty(selectedFile)) return;
-    updateContent()
+    // updateContent()
   },[content,selectedFile])
 
   return {

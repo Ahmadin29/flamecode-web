@@ -1,4 +1,5 @@
 import clsx from "clsx"
+import Link from "next/link";
 
 interface Props {
   className?: string,
@@ -9,6 +10,7 @@ interface Props {
   label?: string,
   onClick?: () => void,
   children?: any,
+  href?: string,
 }
 
 export default function Button({
@@ -20,9 +22,16 @@ export default function Button({
   variant = 'primary',
   children,
   rightIcon,
+  href = '/',
 }:Props) {
+
+  const Component = !href ? 'button' : Link;
+
+  const linkProps = href ? { href } : {};
+
   return(
-    <button className={
+    // @ts-ignore
+    <Component className={
       clsx(
         "flex items-center p-2 px-8 rounded text-sm transition-all",
         {
@@ -32,7 +41,7 @@ export default function Button({
         },
         className,
       )
-    } onClick={()=>onClick?.()}>
+    } onClick={()=>onClick?.()} {...(href ? linkProps : {})}>
       {
         icon && icon
       }
@@ -49,6 +58,6 @@ export default function Button({
         rightIcon && rightIcon
       }
       {children}
-    </button>
+    </Component>
   )
 }

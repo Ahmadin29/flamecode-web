@@ -6,7 +6,7 @@ import { useMemo } from "react";
 
 export default function UnauthenticatedNavbar() {
 
-  const renderMenu = useMemo(()=>{
+  const menu = useMemo(()=>{
     return MENUS.map((item)=>{
       return(
         <Link
@@ -36,7 +36,7 @@ export default function UnauthenticatedNavbar() {
             />
           </Link>
           <div className="flex items-center gap-4 ml-8">
-            {renderMenu}
+            {menu}
           </div>
         </div>
         <div className="">
