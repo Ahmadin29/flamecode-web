@@ -1,5 +1,6 @@
 import { lowerCase } from "lodash-es";
 import beautify from 'js-beautify';
+import UNALLOWED_ATTRIBUTES from "@/consts/unallowed-attributes";
 
 const BEAUTIFY_OPTIONS = {
   "indent_size": "2",
@@ -33,9 +34,12 @@ export const transformJS = (code:string)=>{
 };
 
 export const componentExtractor = (element: any):any => {
-  const tagName = lowerCase(element.tagName);
+
+  const tagName = element.tagName.toLowerCase();
   const attributes = [...element.attributes].reduce((acc, attr) => {
-    acc[attr.name] = attr.value;
+    if (!UNALLOWED_ATTRIBUTES.includes(attr.name)) {
+      acc[attr.name] = attr.value;
+    }
     return acc;
   }, {});
 

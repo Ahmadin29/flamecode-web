@@ -17,7 +17,7 @@ export default function LeftSideBarControls() {
           key={item.key}
           variant="ghost"
           className={clsx(
-            "flex items-center gap-4 p-4 !px-4 hover:bg-fill-100 rounded-none",
+            "flex items-center gap-4 !p-4 !px-4 hover:bg-fill-100 rounded-none",
             {
               "bg-fill-300": page === item.key,
             }
@@ -46,7 +46,7 @@ export default function LeftSideBarControls() {
           variant="ghost"
           className={
             clsx(
-              "flex items-center gap-4 p-4 !px-4 hover:bg-fill-100 rounded-none",
+              "flex items-center gap-4 !p-4 !px-4 hover:bg-fill-100 rounded-none",
             )
           }
           onClick={()=>onSecondaryControlClick(item)}

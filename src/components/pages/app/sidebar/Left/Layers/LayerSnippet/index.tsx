@@ -15,7 +15,6 @@ export default function LayerSnippet({item,depth = 0}:Props) {
 
   const childrens = useMemo(()=>{
     const indent = (depth + 1) * 12;
-
     if (!item.children) return null;
 
     return item.children.map((child:any)=>{
@@ -44,9 +43,11 @@ export default function LayerSnippet({item,depth = 0}:Props) {
     
   },[isOpen,item.children])
 
+  if (item.tag === 'basemodal') return null;
+
   return(
     //GRID_START
-    <div className="flex flex-col">
+    <div className="flex flex-col max-w-[297px] min-w-[60px]">
       <div
         className={
           clsx(

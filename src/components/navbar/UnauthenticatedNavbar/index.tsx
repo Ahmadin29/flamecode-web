@@ -23,7 +23,7 @@ export default function UnauthenticatedNavbar() {
   },[])
 
   return(
-    <div className="sticky top-0 w-full bg-fill-300/10 p-4 pt-8 z-[999999] flex justify-between items-center">
+    <div className="sticky top-0 w-full bg-fill-300/10 p-4 pt-8 z-50 flex justify-between items-center">
       <div className="flex justify-between items-center w-[100%] max-w-[1200px] mx-auto">
         <div className="flex items-center">
           <Link

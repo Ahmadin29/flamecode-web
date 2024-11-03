@@ -1,8 +1,7 @@
-import React, { useContext } from "react";
-import NavBar from "./navbar";
+import React from "react";
 import { Poppins } from 'next/font/google'
-import LayoutContextProvider, { LayoutContext } from "@/contexts/LayoutContext";
-import Head from "next/head";
+import LayoutContextProvider from "@/contexts/LayoutContext";
+import ProjectContextProvider from "@/contexts/ProjectContext";
 
 interface Props {
   children: React.ReactNode;
@@ -17,12 +16,13 @@ const poppins = Poppins({
 export default function Layout({ children }: Props) {
   return (
     <LayoutContextProvider>
-      <div className={poppins.className}>
-        <NavBar/>
-        <div className="">
-          {children}
+      <ProjectContextProvider>
+        <div className={poppins.className}>
+          <div className="">
+            {children}
+          </div>
         </div>
-      </div>
+      </ProjectContextProvider>
     </LayoutContextProvider>
   );
 }

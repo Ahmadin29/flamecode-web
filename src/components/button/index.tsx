@@ -11,6 +11,7 @@ interface Props {
   onClick?: () => void,
   children?: any,
   href?: string,
+  size?: 'sm' | 'md' | 'lg',
 }
 
 export default function Button({
@@ -22,7 +23,8 @@ export default function Button({
   variant = 'primary',
   children,
   rightIcon,
-  href = '/',
+  href,
+  size = 'md',
 }:Props) {
 
   const Component = !href ? 'button' : Link;
@@ -33,11 +35,14 @@ export default function Button({
     // @ts-ignore
     <Component className={
       clsx(
-        "flex items-center p-2 px-8 rounded text-sm transition-all",
+        "flex items-center rounded text-sm transition-all",
         {
-          'bg-primary border-2 border-primary hover:bg-primary/50' : variant === 'primary',
+          'bg-primary border-2 border-primary hover:bg-primary-300' : variant === 'primary',
           'border-2 border-primary hover:bg-primary' : variant === 'outlined',
           'hover:bg-fill-300' : variant === 'ghost',
+          'px-4 py-1' : size === 'sm',
+          'px-8 py-2' : size === 'md',
+          'px-12 py-4' : size === 'lg',
         },
         className,
       )

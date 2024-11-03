@@ -13,12 +13,14 @@ const config: Config = {
         foreground: "var(--foreground)",
 
         primary: "#1D4ED8",
+        "primary-300": "#0E2B9B",
 
         "fill-100": '#1C1C27',
         "fill-300": '#28293D',
         "fill-500": '#3D3E5C',
 
         stroke: '#51537B',
+        success: '#31BA2A',
         warning: '#FCD62A',
         error: '#FF422D',
 

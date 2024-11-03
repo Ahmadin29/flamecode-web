@@ -9,7 +9,7 @@ export default function AuthenticatedNavbar() {
   const {title,description,keywords} = useContext(LayoutContext);
 
   return(
-    <div className="sticky top-0 w-full bg-fill-100 p-4 px-12 flex justify-between items-center border-b border-b-fill-300 z-[999999]">
+    <div className="sticky top-0 w-full bg-fill-100 p-4 px-12 flex justify-between items-center border-b border-b-fill-300 z-50">
       <div className="flex">
         <Link
           href='/'
